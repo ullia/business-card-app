@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlineGoogle, AiOutlineGithub } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const LoginWrap = styled.ul`
   list-style: none;
@@ -33,10 +34,24 @@ const Button = styled.button`
 `;
 
 const Login = ({ authService }) => {
+  // const navigate = useNavigate();
+
+  // const gotoHome = userId => {
+  //   navigate("/member", { state: { id: userId } });
+  // };
+
   const onLogin = e => {
-    // const providerName = e.currentTarget.textContent;
-    authService.login(e.currentTarget.textContent).then(console.log);
+    const providerName = e.currentTarget.textContent;
+    authService.login(providerName).then(console.log);
+    // .then(data => gotoHome(data.user.uid));
   };
+
+  // useEffect(() => {
+  //   authService.onAuthChange(user => {
+  //     user && gotoHome(user.uid);
+  //   });
+  // });
+
   return (
     <LoginWrap>
       <li>

@@ -23,10 +23,14 @@ const WiWM = styled.div`
 `;
 
 function app({ authService }) {
+  const onLogout = () => {
+    console.log("Logout");
+  };
+
   return (
     <WiWM>
       <GlobalStyle />
-      <Navigation authService={authService} />
+      <Navigation authService={authService} onLogout={onLogout} />
       <View />
     </WiWM>
   );
