@@ -1,11 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-  AiOutlineHome,
-  AiOutlineUsergroupAdd,
-  AiOutlineOrderedList,
-  AiOutlineUser,
-} from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUsergroupAdd, AiOutlineOrderedList } from "react-icons/ai";
 
 const MenuWrap = styled.ul`
   list-style: none;
@@ -13,7 +9,7 @@ const MenuWrap = styled.ul`
   }
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
   padding: 10px;
   display: flex;
   width: 100%;
@@ -24,6 +20,7 @@ const Button = styled.button`
   outline: 1px solid #e6e6e6;
   border-radius: 10px;
   background: transparent;
+  text-decoration: none;
   transition: 0.2s ease-in;
   cursor: pointer;
   &:hover {
@@ -32,6 +29,9 @@ const Button = styled.button`
     background: #f6f6f6;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
+  &:visited {
+    color: #000;
+  }
   .button_logo {
     font-size: 2em;
 
@@ -39,31 +39,25 @@ const Button = styled.button`
   }
 `;
 
-const Menu = () => {
+const Menu = ({ btnNameToTitle }) => {
   return (
     <MenuWrap>
       <li>
-        <Button>
+        <Button to="/home" onClick={btnNameToTitle}>
           <AiOutlineHome className="button_logo" />
           Home
         </Button>
       </li>
       <li>
-        <Button>
+        <Button to="/member" onClick={btnNameToTitle}>
           <AiOutlineUsergroupAdd className="button_logo" />
           Member
         </Button>
       </li>
       <li>
-        <Button>
+        <Button to="/todo" onClick={btnNameToTitle}>
           <AiOutlineOrderedList className="button_logo" />
           TodoList
-        </Button>
-      </li>
-      <li>
-        <Button>
-          <AiOutlineUser className="button_logo" />
-          Contact Me
         </Button>
       </li>
     </MenuWrap>

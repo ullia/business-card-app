@@ -7,15 +7,16 @@ const ViewWrap = styled.section`
   display: flex;
   flex-flow: column;
   width: 100%;
+  min-width: calc(1600px - 270px);
   padding: 1em;
   margin-left: 270px;
 `;
 
-const View = () => {
+const View = ({ contTitle, members }) => {
   return (
     <ViewWrap>
-      <ViewHead />
-      <ViewBody />
+      <ViewHead contTitle={contTitle} />
+      <ViewBody members={members} />
     </ViewWrap>
   );
 };

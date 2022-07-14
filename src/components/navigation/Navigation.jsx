@@ -55,7 +55,11 @@ const NaviWrap = styled.section`
   }
 `;
 
-const Navigation = ({ authService, onLogout }) => {
+const Navigation = ({ authService, btnNameToTitle }) => {
+  const onLogout = () => {
+    authService.logout();
+  };
+
   return (
     <NaviWrap>
       <div className="navi__head">
@@ -71,7 +75,7 @@ const Navigation = ({ authService, onLogout }) => {
       </div>
       <div className="navi__body">
         <Login authService={authService} />
-        <Menu />
+        <Menu btnNameToTitle={btnNameToTitle} />
       </div>
       <div className="navi__footer">
         <span>© 2022 Cielo. All Rights Reserved</span>

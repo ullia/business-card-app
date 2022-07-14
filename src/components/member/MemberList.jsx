@@ -5,22 +5,15 @@ import styled from "styled-components";
 const MemberListWrap = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
-const MemberList = () => {
+const MemberList = ({ members }) => {
   return (
     <MemberListWrap>
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
-      <MemberItem />
+      {members.map(member => (
+        <MemberItem member={member} />
+      ))}
     </MemberListWrap>
   );
 };
