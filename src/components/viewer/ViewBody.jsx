@@ -11,9 +11,10 @@ const ViewBodyWrap = styled.div`
   margin: 2em 0;
   height: 100%;
   background: #ccc;
+  height: 100%;
 `;
 
-const ViewBody = ({ members, createMember }) => {
+const ViewBody = ({ members, createMember, onCreateMember, onAdd }) => {
   return (
     <>
       <Routes element={<ViewBodyWrap />}>
@@ -22,7 +23,7 @@ const ViewBody = ({ members, createMember }) => {
         <Route path="/todo" element={<TodoList />} />
         <Route path="/memberdetail" element={<MemberEdit members={members} />} />
       </Routes>
-      {createMember === true && <MemberCreate />}
+      {createMember === true && <MemberCreate onCreateMember={onCreateMember} onAdd={onAdd} />}
     </>
   );
 };

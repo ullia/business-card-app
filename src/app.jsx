@@ -50,8 +50,14 @@ function App({ authService }) {
     return setContTitle(e.currentTarget.textContent);
   };
 
-  const onCreateMember = () => {
-    setCreateMember(true);
+  const onCreateMember = close => {
+    setCreateMember(close && true);
+  };
+
+  const onAdd = memberObj => {
+    // console.log(memberObj);
+    const update = [...members, memberObj];
+    setMembers(update);
   };
 
   useEffect(() => {
@@ -70,6 +76,7 @@ function App({ authService }) {
         listReset={listReset}
         onCreateMember={onCreateMember}
         createMember={createMember}
+        onAdd={onAdd}
       />
     </WiWM>
   );

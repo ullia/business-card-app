@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 const MemberItemWrap = styled.li`
   overflow: hidden;
-  width: 32%;
+  flex: 1 1 auto;
+  min-width: 480px;
   height: 250px;
   background: none;
-  margin-bottom: 2%;
+  margin: 0 1% 5%;
   border-radius: 10px;
   transition: 0.2s ease-in;
+
   cursor: pointer;
   &:hover {
     transform: translate(-2px, -2px);

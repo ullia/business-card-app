@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const MemberListWrap = styled.ul`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: flex-start;
 `;
 
 const MemberList = ({ members }) => {

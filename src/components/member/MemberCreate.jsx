@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 
@@ -34,6 +34,7 @@ const MemberItemWrap = styled.div`
   transform: translate(-50%, -50%);
   overflow: hidden;
   width: 50%;
+  min-width: 900px;
   height: 300px;
   background: #fff;
   border-radius: 10px;
@@ -139,9 +140,49 @@ const CreateButton = styled.button`
   }
 `;
 
-const MemberCreate = () => {
+const MemberCreate = ({ onCreateMember, onAdd }) => {
+  const formRef = useRef();
+  const nameRef = useRef();
+  const themeRef = useRef();
+  const messageRef = useRef();
+  const companyRef = useRef();
+  const divisionRef = useRef();
+  const rankRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log("submit success");
+    const member = {
+      id: Date.now(),
+      theme: themeRef.current.value || "",
+      name: nameRef.current.value || "",
+      message: messageRef.current.value || "",
+      company: companyRef.current.value || "",
+      division: divisionRef.current.value || "",
+      rank: rankRef.current.value || "",
+      phone: phoneRef.current.value || "",
+      email: emailRef.current.value || "",
+      reportingDate: "2022. 07. 13.",
+      fileName: null,
+      fileURL: null,
+    };
+    if (
+      member.name === "" ||
+      member.company === "" ||
+      member.division === "" ||
+      member.phone === "" ||
+      member.email === ""
+    ) {
+      return alert("이름, 회사명, 부서, 연락처, 이메일은 필수 항목입니다.");
+    }
+    formRef.current.reset();
+    onAdd(member);
+    onCreateMember(false);
+  };
   return (
-    <form>
+    <form ref={formRef} onSubmit={onSubmit}>
       <MemberItemWrap>
         <div className="member__info__basic">
           <div className="mib__img">
@@ -149,8 +190,8 @@ const MemberCreate = () => {
           </div>
           <div className="mib__text">
             <h4>
-              <Input type="text" placeholder="이름" name="member__input__name" />
-              <Select name="member__select__theme">
+              <Input ref={nameRef} type="text" placeholder="이름" name="member__input__name" />
+              <Select ref={themeRef} name="member__select__theme">
                 <option value="none">=== 중요도 ===</option>
                 <option value="기본" selected>
                   기본
@@ -164,6 +205,7 @@ const MemberCreate = () => {
             </h4>
             <h5>
               <Textarea
+                ref={messageRef}
                 type="text"
                 placeholder="간단한 메세지"
                 size="100%"
@@ -176,16 +218,37 @@ const MemberCreate = () => {
           <div className="mid__text">
             <ul>
               <li>
-                <Input type="text" placeholder="회사명" name="member__input__company" />{" "}
+                <Input
+                  ref={companyRef}
+                  type="text"
+                  placeholder="회사명"
+                  name="member__input__company"
+                />
                 <span>|</span>
-                <Input type="text" placeholder="부서" name="member__input__division" />
-                <span>|</span> <Input type="text" placeholder="직급" name="member__input__rank" />
+                <Input
+                  ref={divisionRef}
+                  type="text"
+                  placeholder="부서"
+                  name="member__input__division"
+                />
+                <span>|</span>
+                <Input ref={rankRef} type="text" placeholder="직급" name="member__input__rank" />
               </li>
               <li>
-                <Input type="text" placeholder="이메일" name="member__input__email" />
+                <Input
+                  ref={emailRef}
+                  type="text"
+                  placeholder="이메일"
+                  name="member__input__email"
+                />
               </li>
               <li>
-                <Input type="text" placeholder="연락처" name="member__input__phone" />
+                <Input
+                  ref={phoneRef}
+                  type="text"
+                  placeholder="연락처"
+                  name="member__input__phone"
+                />
               </li>
             </ul>
           </div>

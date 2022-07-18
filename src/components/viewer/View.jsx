@@ -8,7 +8,7 @@ const ViewWrap = styled.section`
   display: flex;
   flex-flow: column;
   width: 100%;
-  min-width: calc(1600px - 270px);
+  height: 100vh;
   padding: 1em;
   margin-left: 270px;
 `;
@@ -25,11 +25,16 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({ contTitle, members, search, onCreateMember, createMember }) => {
+const View = ({ contTitle, members, search, onCreateMember, createMember, onAdd }) => {
   return (
     <ViewWrap>
       <ViewHead contTitle={contTitle} search={search} onCreateMember={onCreateMember} />
-      <ViewBody members={members} createMember={createMember} />
+      <ViewBody
+        members={members}
+        createMember={createMember}
+        onCreateMember={onCreateMember}
+        onAdd={onAdd}
+      />
       {createMember && <Overlay />}
     </ViewWrap>
   );
