@@ -25,15 +25,31 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({ contTitle, members, search, onCreateMember, createMember, onAdd }) => {
+const View = ({
+  contTitle,
+  members,
+  search,
+  listReset,
+  onCreateMember,
+  createMember,
+  onAdd,
+  onDelete,
+}) => {
   return (
     <ViewWrap>
-      <ViewHead contTitle={contTitle} search={search} onCreateMember={onCreateMember} />
+      <ViewHead
+        contTitle={contTitle}
+        search={search}
+        onCreateMember={onCreateMember}
+        listReset={listReset}
+      />
       <ViewBody
         members={members}
+        listReset={listReset}
         createMember={createMember}
         onCreateMember={onCreateMember}
         onAdd={onAdd}
+        onDelete={onDelete}
       />
       {createMember && <Overlay />}
     </ViewWrap>

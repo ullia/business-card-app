@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
 
 const MemberItemWrap = styled.li`
@@ -11,24 +11,19 @@ const MemberItemWrap = styled.li`
   margin: 0 1% 5%;
   border-radius: 10px;
   transition: 0.2s ease-in;
-
   cursor: pointer;
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.4);
-  }
+
   .member__info__basic {
+    display: flex;
     position: relative;
     width: 100%;
     height: 44%;
     background: #fff;
     .mib__img {
-      position: absolute;
-      top: 10px;
-      left: 10px;
       overflow: hidden;
       width: 148px;
       height: 148px;
+      margin: 10px;
       border-radius: 10px;
       z-index: 2;
       img {
@@ -37,12 +32,23 @@ const MemberItemWrap = styled.li`
       }
     }
     .mib__text {
-      position: absolute;
-      top: 25px;
-      left: 180px;
-      width: 55%;
+      margin: 1.2em 1em 0 1em;
+      flex: 1;
       h4 {
+        display: flex;
+        align-items: center;
         font: 700 1.2rem/1.2rem "NanumBarunGothicBold";
+        .member__controls {
+          opacity: 0;
+          margin-left: auto;
+          svg {
+            font-size: 1.4rem;
+            margin-left: 0.5rem;
+            &:hover {
+              color: #b56576;
+            }
+          }
+        }
       }
       h5 {
         width: 100%;
@@ -97,12 +103,20 @@ const MemberItemWrap = styled.li`
       }
     }
   }
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.4);
+    .member__controls {
+      opacity: 1 !important;
+    }
+  }
 `;
 
 const DEFAULT_FILE_URL = "default_face.jpg";
 
-const MemberItem = ({ member }) => {
+const MemberItem = ({ member, onDelete }) => {
   const {
+    id,
     name,
     theme,
     message,
@@ -116,33 +130,38 @@ const MemberItem = ({ member }) => {
     fileURL,
   } = member;
   const url = fileURL || DEFAULT_FILE_URL;
+
   return (
     <MemberItemWrap>
-      <Link to="/memberdetail">
-        <div className="member__info__basic">
-          <div className="mib__img">
-            <img src={`/images/` + url} alt="profile image" />
-          </div>
-          <div className="mib__text">
-            <h4>{name}</h4>
-            <h5>{message}</h5>
-          </div>
+      <div className="member__info__basic">
+        <div className="mib__img">
+          <img src={`/images/` + url} alt="profile image" />
         </div>
-        <div className={"member__info__detail " + theme}>
-          <div className="mid__text">
-            <ul>
-              <li>
-                {company} <span>|</span> {division} <span>|</span> {rank}
-              </li>
-              <li>email. {email}</li>
-              <li>tel. {phone}</li>
-            </ul>
-          </div>
-          <div className="mid__day">
-            <span>{reportingDate}</span>
-          </div>
+        <div className="mib__text">
+          <h4>
+            {name}
+            <span className="member__controls">
+              <AiOutlineEdit />
+              <AiOutlineDelete onClick={() => onDelete(id)} />
+            </span>
+          </h4>
+          <h5>{message}</h5>
         </div>
-      </Link>
+      </div>
+      <div className={"member__info__detail " + theme}>
+        <div className="mid__text">
+          <ul>
+            <li>
+              {company} <span>|</span> {division} <span>|</span> {rank}
+            </li>
+            <li>email. {email}</li>
+            <li>tel. {phone}</li>
+          </ul>
+        </div>
+        <div className="mid__day">
+          <span>{reportingDate}</span>
+        </div>
+      </div>
     </MemberItemWrap>
   );
 };

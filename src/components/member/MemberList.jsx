@@ -8,11 +8,11 @@ const MemberListWrap = styled.ul`
   justify-content: flex-start;
 `;
 
-const MemberList = ({ members }) => {
+const MemberList = ({ members, onDelete }) => {
   return (
     <MemberListWrap>
       {members.map(member => (
-        <MemberItem member={member} />
+        <MemberItem key={member.id} member={member} onDelete={onDelete} />
       ))}
     </MemberListWrap>
   );

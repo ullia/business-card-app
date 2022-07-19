@@ -45,7 +45,7 @@ const ViewHead = ({ contTitle, search, listReset, onCreateMember }) => {
   const handleSearch = () => {
     const value = searchRef.current.value;
     // alert(value);
-    if (!value) {
+    if (value === "") {
       listReset();
     }
     search(value);

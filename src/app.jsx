@@ -41,8 +41,9 @@ function App({ authService }) {
   };
 
   const listReset = () => {
-    setMembers(memberData);
-    console.log(members);
+    const beforeSearchMembers = memberData;
+    setMembers(beforeSearchMembers);
+    // console.log(members);
   };
 
   const btnNameToTitle = e => {
@@ -58,6 +59,10 @@ function App({ authService }) {
     // console.log(memberObj);
     const update = [...members, memberObj];
     setMembers(update);
+  };
+
+  const onDelete = id => {
+    setMembers(members.filter(member => member.id !== id));
   };
 
   useEffect(() => {
@@ -77,6 +82,7 @@ function App({ authService }) {
         onCreateMember={onCreateMember}
         createMember={createMember}
         onAdd={onAdd}
+        onDelete={onDelete}
       />
     </WiWM>
   );

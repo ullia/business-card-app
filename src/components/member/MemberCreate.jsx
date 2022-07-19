@@ -14,6 +14,9 @@ const Textarea = styled.textarea`
   padding: 0 10px;
   font: 500 0.8rem/1.4rem "NanumBarunGothic";
   width: ${props => props.size || "200px"};
+  height: 4em;
+  /* border: none; */
+  resize: none;
 `;
 
 const Select = styled.select`
@@ -42,17 +45,16 @@ const MemberItemWrap = styled.div`
   z-index: 5;
 
   .member__info__basic {
+    display: flex;
     position: relative;
     width: 100%;
     height: 44%;
     background: #fff;
     .mib__img {
-      position: absolute;
-      top: 10px;
-      left: 10px;
       overflow: hidden;
       width: 148px;
       height: 148px;
+      margin: 10px;
       border-radius: 10px;
       z-index: 2;
       img {
@@ -61,15 +63,28 @@ const MemberItemWrap = styled.div`
       }
     }
     .mib__text {
-      position: absolute;
-      top: 25px;
-      left: 180px;
-      width: 55%;
+      margin: 1.2em 1em 0 1em;
+      flex: 1;
       h4 {
+        display: flex;
+        align-items: center;
+        font: 700 1.2rem/1.2rem "NanumBarunGothicBold";
+        span {
+          display: inline-block;
+          margin-left: auto;
+          svg {
+            font-size: 1.4rem;
+            margin-left: 0.5rem;
+            &:hover {
+              color: #b56576;
+            }
+          }
+        }
       }
       h5 {
         width: 100%;
         padding-top: 0.6rem;
+        font: 500 0.8rem/1.4rem "NanumBarunGothic";
         letter-spacing: 0;
       }
     }
@@ -154,6 +169,7 @@ const MemberCreate = ({ onCreateMember, onAdd }) => {
   const onSubmit = e => {
     e.preventDefault();
     console.log("submit success");
+    const today = new Date();
     const member = {
       id: Date.now(),
       theme: themeRef.current.value || "",
@@ -164,7 +180,11 @@ const MemberCreate = ({ onCreateMember, onAdd }) => {
       rank: rankRef.current.value || "",
       phone: phoneRef.current.value || "",
       email: emailRef.current.value || "",
-      reportingDate: "2022. 07. 13.",
+      reportingDate: today.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
       fileName: null,
       fileURL: null,
     };
@@ -208,7 +228,7 @@ const MemberCreate = ({ onCreateMember, onAdd }) => {
                 ref={messageRef}
                 type="text"
                 placeholder="간단한 메세지"
-                size="100%"
+                size="58.5%"
                 name="member__input__message"
               />
             </h5>
@@ -253,7 +273,7 @@ const MemberCreate = ({ onCreateMember, onAdd }) => {
             </ul>
           </div>
           <div className="mid__day">
-            <span>2022. 7. 13.</span>
+            <span>작성일 날짜</span>
           </div>
         </div>
         <CreateButton type="submit">

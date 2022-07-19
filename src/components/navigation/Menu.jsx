@@ -54,12 +54,12 @@ const Menu = ({ btnNameToTitle }) => {
           Member
         </Button>
       </li>
-      <li>
+      {/* <li>
         <Button to="/todo" onClick={btnNameToTitle}>
           <AiOutlineOrderedList className="button_logo" />
           TodoList
         </Button>
-      </li>
+      </li> */}
     </MenuWrap>
   );
 };

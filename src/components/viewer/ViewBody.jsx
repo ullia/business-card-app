@@ -14,14 +14,16 @@ const ViewBodyWrap = styled.div`
   height: 100%;
 `;
 
-const ViewBody = ({ members, createMember, onCreateMember, onAdd }) => {
+const ViewBody = ({ members, listReset, createMember, onCreateMember, onAdd, onDelete }) => {
   return (
     <>
       <Routes element={<ViewBodyWrap />}>
         <Route path="/home" element={<Home />} />
-        <Route path="/member" element={<MemberList members={members} />} />
+        <Route
+          path="/member"
+          element={<MemberList members={members} listReset={listReset} onDelete={onDelete} />}
+        />
         <Route path="/todo" element={<TodoList />} />
-        <Route path="/memberdetail" element={<MemberEdit members={members} />} />
       </Routes>
       {createMember === true && <MemberCreate onCreateMember={onCreateMember} onAdd={onAdd} />}
     </>
