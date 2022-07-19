@@ -114,7 +114,7 @@ const MemberItemWrap = styled.li`
 
 const DEFAULT_FILE_URL = "default_face.jpg";
 
-const MemberItem = ({ member, onDelete }) => {
+const MemberItem = ({ member, editMemberToggle, onDelete }) => {
   const {
     id,
     name,
@@ -141,7 +141,7 @@ const MemberItem = ({ member, onDelete }) => {
           <h4>
             {name}
             <span className="member__controls">
-              <AiOutlineEdit />
+              <AiOutlineEdit onClick={() => editMemberToggle(id)} />
               <AiOutlineDelete onClick={() => onDelete(id)} />
             </span>
           </h4>

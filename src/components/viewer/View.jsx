@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import ViewHead from "./ViewHead";
-import ViewBody from "./ViewBody";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { Routes, Route } from "react-router-dom";
+import Home from "../home/Home";
+import MemberCreate from "../member/MemberCreate";
+import MemberEdit from "../member/MemberEdit";
+import MemberList from "../member/MemberList";
+import TodoList from "../todolist/TodoList";
 
 const ViewWrap = styled.section`
   position: relative;
@@ -11,6 +16,42 @@ const ViewWrap = styled.section`
   height: 100vh;
   padding: 1em;
   margin-left: 270px;
+`;
+
+const ViewHeadWrap = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40px;
+  background: transparent;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+  h3 {
+    display: inline-block;
+    line-height: 40px;
+    text-transform: uppercase;
+  }
+  .member_controls {
+    margin-left: auto;
+    .member__add {
+      font-size: 28px;
+      margin-right: 10px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    input#member__search {
+      height: 28px;
+      padding: 0 10px;
+      font: 400 0.9rem "NanumBarunGothic";
+      color: #000;
+    }
+  }
+`;
+
+const ViewBodyWrap = styled.div`
+  margin: 2em 0;
+  height: 100%;
+  background: #ccc;
+  height: 100%;
 `;
 
 const Overlay = styled.div`
@@ -25,33 +66,77 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({
-  contTitle,
-  members,
-  search,
-  listReset,
-  onCreateMember,
-  createMember,
-  onAdd,
-  onDelete,
-}) => {
+const View = ({ contTitle, members, search, listReset, onAdd, onEdit, onDelete }) => {
+  const searchRef = useRef();
+  const [createMemberStatus, setCreateMemberStatus] = useState(false);
+  const [editMemberStatus, setEditMemberStatus] = useState(false);
+  const [editObj, setEditObj] = useState();
+
+  const onKeyPress = e => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    const value = searchRef.current.value;
+    // alert(value);
+    if (value === "") {
+      listReset();
+    }
+    search(value);
+  };
+
+  const createMemberToggle = () => {
+    setCreateMemberStatus(!createMemberStatus);
+  };
+  const editMemberToggle = id => {
+    setEditMemberStatus(!editMemberStatus);
+
+    const editMember = members.filter(member => member.id === id);
+    setEditObj(editMember);
+  };
+
   return (
     <ViewWrap>
-      <ViewHead
-        contTitle={contTitle}
-        search={search}
-        onCreateMember={onCreateMember}
-        listReset={listReset}
-      />
-      <ViewBody
-        members={members}
-        listReset={listReset}
-        createMember={createMember}
-        onCreateMember={onCreateMember}
-        onAdd={onAdd}
-        onDelete={onDelete}
-      />
-      {createMember && <Overlay />}
+      <ViewHeadWrap>
+        <h3>{contTitle}</h3>
+        {contTitle === "member" ? (
+          <div className="member_controls">
+            <AiOutlineUserAdd className="member__add" onClick={createMemberToggle} />
+            <input
+              ref={searchRef}
+              type="search"
+              placeholder="...Search"
+              id="member__search"
+              onKeyPress={onKeyPress}
+            />
+          </div>
+        ) : null}
+      </ViewHeadWrap>
+
+      <Routes element={<ViewBodyWrap />}>
+        <Route path="/home" element={<Home />} />
+        <Route
+          path="/member"
+          element={
+            <MemberList
+              members={members}
+              listReset={listReset}
+              editMemberToggle={editMemberToggle}
+              onDelete={onDelete}
+            />
+          }
+        />
+        <Route path="/todo" element={<TodoList />} />
+      </Routes>
+      {createMemberStatus === true && (
+        <MemberCreate createMemberToggle={createMemberToggle} onAdd={onAdd} />
+      )}
+      {editMemberStatus === true && (
+        <MemberEdit member={editObj[0]} editMemberToggle={editMemberToggle} onEdit={onEdit} />
+      )}
+      {createMemberStatus && <Overlay onClick={createMemberToggle} />}
     </ViewWrap>
   );
 };

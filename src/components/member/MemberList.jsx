@@ -8,11 +8,16 @@ const MemberListWrap = styled.ul`
   justify-content: flex-start;
 `;
 
-const MemberList = ({ members, onDelete }) => {
+const MemberList = ({ members, editMemberToggle, onDelete }) => {
   return (
     <MemberListWrap>
       {members.map(member => (
-        <MemberItem key={member.id} member={member} onDelete={onDelete} />
+        <MemberItem
+          key={member.id}
+          member={member}
+          editMemberToggle={editMemberToggle}
+          onDelete={onDelete}
+        />
       ))}
     </MemberListWrap>
   );

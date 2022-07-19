@@ -155,7 +155,7 @@ const CreateButton = styled.button`
   }
 `;
 
-const MemberCreate = ({ onCreateMember, onAdd }) => {
+const MemberCreate = ({ createMemberToggle, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const themeRef = useRef();
@@ -188,18 +188,18 @@ const MemberCreate = ({ onCreateMember, onAdd }) => {
       fileName: null,
       fileURL: null,
     };
-    if (
-      member.name === "" ||
-      member.company === "" ||
-      member.division === "" ||
-      member.phone === "" ||
-      member.email === ""
-    ) {
-      return alert("이름, 회사명, 부서, 연락처, 이메일은 필수 항목입니다.");
-    }
+    // if (
+    //   member.name === "" ||
+    //   member.company === "" ||
+    //   member.division === "" ||
+    //   member.phone === "" ||
+    //   member.email === ""
+    // ) {
+    //   return alert("이름, 회사명, 부서, 연락처, 이메일은 필수 항목입니다.");
+    // }
     formRef.current.reset();
     onAdd(member);
-    onCreateMember(false);
+    createMemberToggle();
   };
   return (
     <form ref={formRef} onSubmit={onSubmit}>

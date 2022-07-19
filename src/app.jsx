@@ -32,7 +32,6 @@ const WiWM = styled.div`
 function App({ authService }) {
   const [members, setMembers] = useState(memberData);
   const [contTitle, setContTitle] = useState("");
-  const [createMember, setCreateMember] = useState(false);
 
   const search = keyword => {
     const result = members.filter(member => member.name.includes(keyword));
@@ -51,13 +50,20 @@ function App({ authService }) {
     return setContTitle(e.currentTarget.textContent);
   };
 
-  const onCreateMember = close => {
-    setCreateMember(close && true);
-  };
-
   const onAdd = memberObj => {
     // console.log(memberObj);
     const update = [...members, memberObj];
+    setMembers(update);
+  };
+
+  const onEdit = memberObj => {
+    console.log(memberObj);
+    const update = members.map(member => {
+      if (member.id === memberObj.id) {
+        return memberObj;
+      }
+      return member;
+    });
     setMembers(update);
   };
 
@@ -79,9 +85,8 @@ function App({ authService }) {
         contTitle={contTitle}
         search={search}
         listReset={listReset}
-        onCreateMember={onCreateMember}
-        createMember={createMember}
         onAdd={onAdd}
+        onEdit={onEdit}
         onDelete={onDelete}
       />
     </WiWM>
