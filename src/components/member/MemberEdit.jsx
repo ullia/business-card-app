@@ -180,21 +180,25 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
       rank: rankRef.current.value || "",
       phone: phoneRef.current.value || "",
       email: emailRef.current.value || "",
-      reportingDate: today.toLocaleDateString("ko-KR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
+      reportingDate: today.toLocaleDateString(
+        "ko-KR",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+        ".",
+      ),
       fileName: null,
       fileURL: null,
     };
-    console.log(newMember);
+    // console.log(newMember);
     if (
-      member.name === "" ||
-      member.company === "" ||
-      member.division === "" ||
-      member.phone === "" ||
-      member.email === ""
+      newMember.name === "" ||
+      newMember.company === "" ||
+      newMember.division === "" ||
+      newMember.phone === "" ||
+      newMember.email === ""
     ) {
       return alert("이름, 회사명, 부서, 연락처, 이메일은 필수 항목입니다.");
     }
@@ -218,7 +222,7 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
                 type="text"
                 name="member__input__name"
               />
-              <Select ref={themeRef} defaulValue={member.theme} name="member__select__theme">
+              <Select ref={themeRef} defaultValue={member.theme} name="member__select__theme">
                 <option value="none">=== 중요도 ===</option>
                 <option value="기본" selected>
                   기본

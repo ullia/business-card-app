@@ -43,7 +43,7 @@
   },
   {
     "id": "4",
-    "theme": "basic",
+    "theme": "★★",
     "name": "윤두용",
     "message": "안녕하세요! 소개팅이 잘 안되어 힘듭니다.",
     "company": "SANTEL global",
@@ -51,6 +51,34 @@
     "rank": "주임",
     "phone": "010-5555-5555",
     "email": "dudragon@santelglobal.com",
+    "reportingDate": "2022. 07. 13.",
+    "fileName": null,
+    "fileURL": null
+  },
+  {
+    "id": "5",
+    "theme": "★",
+    "name": "이다혜",
+    "message": "안녕하세요! KIA의 마스코트입니다.",
+    "company": "KIA Tigers",
+    "division": "치어리더",
+    "rank": "SSS",
+    "phone": "010-7979-7979",
+    "email": "kiadakong@santelglobal.com",
+    "reportingDate": "2022. 07. 13.",
+    "fileName": null,
+    "fileURL": null
+  },
+  {
+    "id": "6",
+    "theme": "basic",
+    "name": "바보보",
+    "message": "에헤헿? 아핳?",
+    "company": "SANTEL global",
+    "division": "잡무팀",
+    "rank": "none",
+    "phone": "010-2233-22333",
+    "email": "babo@santelglobal.com",
     "reportingDate": "2022. 07. 13.",
     "fileName": null,
     "fileURL": null

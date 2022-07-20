@@ -33,11 +33,17 @@ function App({ authService }) {
   const [members, setMembers] = useState(memberData);
   const [contTitle, setContTitle] = useState("");
 
-  const search = keyword => {
-    const result = members.filter(member => member.name.includes(keyword));
-
-    setMembers(result);
-  };
+  // const search = keyword => {
+  //   if (keyword === "") {
+  //     const result = memberData;
+  //     setMembers(result);
+  //   } else {
+  //     const result = members.filter(function (member) {
+  //       return member.name.toLowerCase().includes(keyword.toLowerCase());
+  //     });
+  //     setMembers(result);
+  //   }
+  // };
 
   const listReset = () => {
     const beforeSearchMembers = memberData;
@@ -57,7 +63,7 @@ function App({ authService }) {
   };
 
   const onEdit = memberObj => {
-    console.log(memberObj);
+    // console.log(memberObj);
     const update = members.map(member => {
       if (member.id === memberObj.id) {
         return memberObj;
@@ -74,7 +80,9 @@ function App({ authService }) {
   useEffect(() => {
     const pathName = window.location.pathname.split("/")[1];
     setContTitle(pathName || "home");
-  }, [contTitle]);
+
+    setMembers(members);
+  }, [contTitle, members]);
 
   return (
     <WiWM>
@@ -83,8 +91,7 @@ function App({ authService }) {
       <View
         members={members}
         contTitle={contTitle}
-        search={search}
-        listReset={listReset}
+        // search={search}
         onAdd={onAdd}
         onEdit={onEdit}
         onDelete={onDelete}

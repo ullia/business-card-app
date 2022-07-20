@@ -8,17 +8,26 @@ const MemberListWrap = styled.ul`
   justify-content: flex-start;
 `;
 
-const MemberList = ({ members, editMemberToggle, onDelete }) => {
+const MemberList = ({ members, keyword, editMemberToggle, onDelete }) => {
   return (
     <MemberListWrap>
-      {members.map(member => (
-        <MemberItem
-          key={member.id}
-          member={member}
-          editMemberToggle={editMemberToggle}
-          onDelete={onDelete}
-        />
-      ))}
+      {}
+      {members
+        .filter(member => {
+          if (keyword === "") {
+            return member;
+          } else if (member.name.includes(keyword)) {
+            return member;
+          }
+        })
+        .map(member => (
+          <MemberItem
+            key={member.id}
+            member={member}
+            editMemberToggle={editMemberToggle}
+            onDelete={onDelete}
+          />
+        ))}
     </MemberListWrap>
   );
 };

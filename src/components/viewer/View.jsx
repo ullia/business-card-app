@@ -66,26 +66,24 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({ contTitle, members, search, listReset, onAdd, onEdit, onDelete }) => {
+const View = ({ contTitle, members, search, onAdd, onEdit, onDelete }) => {
   const searchRef = useRef();
   const [createMemberStatus, setCreateMemberStatus] = useState(false);
   const [editMemberStatus, setEditMemberStatus] = useState(false);
   const [editObj, setEditObj] = useState();
 
-  const onKeyPress = e => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+  // const onKeyPress = e => {
+  //   if (e.key === "Enter") {
+  //     handleSearch();
+  //   }
+  // };
 
-  const handleSearch = () => {
-    const value = searchRef.current.value;
-    // alert(value);
-    if (value === "") {
-      listReset();
-    }
-    search(value);
-  };
+  // const handleSearch = () => {
+  //   const value = searchRef.current.value;
+  //   search(value);
+  // };
+
+  const [keyword, setKeyword] = useState("");
 
   const createMemberToggle = () => {
     setCreateMemberStatus(!createMemberStatus);
@@ -109,7 +107,8 @@ const View = ({ contTitle, members, search, listReset, onAdd, onEdit, onDelete }
               type="search"
               placeholder="...Search"
               id="member__search"
-              onKeyPress={onKeyPress}
+              // onKeyPress={onKeyPress}
+              onChange={e => setKeyword(e.target.value)}
             />
           </div>
         ) : null}
@@ -122,7 +121,7 @@ const View = ({ contTitle, members, search, listReset, onAdd, onEdit, onDelete }
           element={
             <MemberList
               members={members}
-              listReset={listReset}
+              keyword={keyword}
               editMemberToggle={editMemberToggle}
               onDelete={onDelete}
             />
@@ -137,6 +136,7 @@ const View = ({ contTitle, members, search, listReset, onAdd, onEdit, onDelete }
         <MemberEdit member={editObj[0]} editMemberToggle={editMemberToggle} onEdit={onEdit} />
       )}
       {createMemberStatus && <Overlay onClick={createMemberToggle} />}
+      {editMemberStatus && <Overlay onClick={editMemberToggle} />}
     </ViewWrap>
   );
 };
