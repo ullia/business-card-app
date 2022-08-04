@@ -29,7 +29,7 @@ const WiWM = styled.div`
   display: flex;
 `;
 
-function App({ authService }) {
+function App({ FileInput, authService }) {
   const [members, setMembers] = useState(memberData);
   const [contTitle, setContTitle] = useState("");
 
@@ -95,6 +95,7 @@ function App({ authService }) {
         onAdd={onAdd}
         onEdit={onEdit}
         onDelete={onDelete}
+        FileInput={FileInput}
       />
     </WiWM>
   );

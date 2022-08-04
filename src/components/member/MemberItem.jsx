@@ -112,7 +112,7 @@ const MemberItemWrap = styled.li`
   }
 `;
 
-const DEFAULT_FILE_URL = "default_face.jpg";
+const DEFAULT_FILE_URL = "/images/default_face.jpg";
 
 const MemberItem = ({ member, editMemberToggle, onDelete }) => {
   const {
@@ -135,7 +135,7 @@ const MemberItem = ({ member, editMemberToggle, onDelete }) => {
     <MemberItemWrap>
       <div className="member__info__basic">
         <div className="mib__img">
-          <img src={`/images/` + url} alt="profile image" />
+          <img src={url} alt="profile" />
         </div>
         <div className="mib__text">
           <h4>

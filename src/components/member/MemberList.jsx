@@ -1,6 +1,7 @@
 import React from "react";
 import MemberItem from "./MemberItem";
 import styled from "styled-components";
+import uuid from "react-uuid";
 
 const MemberListWrap = styled.ul`
   display: flex;
@@ -11,8 +12,8 @@ const MemberListWrap = styled.ul`
 const MemberList = ({ members, keyword, editMemberToggle, onDelete }) => {
   return (
     <MemberListWrap>
-      {}
       {members
+        // eslint-disable-next-line array-callback-return
         .filter(member => {
           if (keyword === "") {
             return member;
@@ -22,7 +23,7 @@ const MemberList = ({ members, keyword, editMemberToggle, onDelete }) => {
         })
         .map(member => (
           <MemberItem
-            key={member.id}
+            key={uuid()}
             member={member}
             editMemberToggle={editMemberToggle}
             onDelete={onDelete}

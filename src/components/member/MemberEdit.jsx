@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 
 const Input = styled.input`
   height: 28px;
@@ -155,9 +155,10 @@ const CreateButton = styled.button`
   }
 `;
 
-const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
+const MemberEdit = ({ FileInput, member, editMemberToggle, onEdit }) => {
   const formRef = useRef();
   const nameRef = useRef();
+  const faceRef = useRef();
   const themeRef = useRef();
   const messageRef = useRef();
   const companyRef = useRef();
@@ -165,6 +166,23 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
   const rankRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
+  const [file, setFile] = useState({
+    fileName: null,
+    fileURL: null,
+  });
+
+  const profileImgChange = url => {
+    faceRef.current.src = url;
+  };
+
+  const onFileChange = file => {
+    console.log(file);
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+    profileImgChange(file.url);
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -180,17 +198,13 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
       rank: rankRef.current.value || "",
       phone: phoneRef.current.value || "",
       email: emailRef.current.value || "",
-      reportingDate: today.toLocaleDateString(
-        "ko-KR",
-        {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        },
-        ".",
-      ),
-      fileName: null,
-      fileURL: null,
+      reportingDate: today.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+      fileName: file.fileName || "",
+      fileURL: file.fileURL || "",
     };
     // console.log(newMember);
     if (
@@ -212,7 +226,8 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
       <MemberEditWrap>
         <div className="member__info__basic">
           <div className="mib__img">
-            <img src="/images/default_face.jpg" alt="profile image" />
+            <img ref={faceRef} src={member.fileURL || `/images/default_face.jpg`} alt="" />
+            <FileInput name={file.fileName} onFileChange={onFileChange} />
           </div>
           <div className="mib__text">
             <h4>
@@ -293,7 +308,7 @@ const MemberEdit = ({ member, editMemberToggle, onEdit }) => {
           </div>
         </div>
         <CreateButton type="submit">
-          <AiOutlinePlus />
+          <AiOutlineEdit />
         </CreateButton>
       </MemberEditWrap>
     </form>

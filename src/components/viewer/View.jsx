@@ -66,7 +66,7 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({ contTitle, members, search, onAdd, onEdit, onDelete }) => {
+const View = ({ FileInput, contTitle, members, search, onAdd, onEdit, onDelete }) => {
   const searchRef = useRef();
   const [createMemberStatus, setCreateMemberStatus] = useState(false);
   const [editMemberStatus, setEditMemberStatus] = useState(false);
@@ -130,10 +130,15 @@ const View = ({ contTitle, members, search, onAdd, onEdit, onDelete }) => {
         <Route path="/todo" element={<TodoList />} />
       </Routes>
       {createMemberStatus === true && (
-        <MemberCreate createMemberToggle={createMemberToggle} onAdd={onAdd} />
+        <MemberCreate FileInput={FileInput} createMemberToggle={createMemberToggle} onAdd={onAdd} />
       )}
       {editMemberStatus === true && (
-        <MemberEdit member={editObj[0]} editMemberToggle={editMemberToggle} onEdit={onEdit} />
+        <MemberEdit
+          FileInput={FileInput}
+          member={editObj[0]}
+          editMemberToggle={editMemberToggle}
+          onEdit={onEdit}
+        />
       )}
       {createMemberStatus && <Overlay onClick={createMemberToggle} />}
       {editMemberStatus && <Overlay onClick={editMemberToggle} />}

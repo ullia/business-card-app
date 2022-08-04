@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
+import uuid from "react-uuid";
 
 const Input = styled.input`
   height: 28px;
@@ -155,7 +156,7 @@ const CreateButton = styled.button`
   }
 `;
 
-const MemberCreate = ({ createMemberToggle, onAdd }) => {
+const MemberCreate = ({ FileInput, createMemberToggle, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const themeRef = useRef();
@@ -165,13 +166,28 @@ const MemberCreate = ({ createMemberToggle, onAdd }) => {
   const rankRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
+  const [file, setFile] = useState({
+    fileName: null,
+    fileURL: null,
+  });
+
+  const url = file.fileURL || `/images/default_face.jpg`;
+
+  const onFileChange = file => {
+    console.log(file);
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
     console.log("submit success");
     const today = new Date();
     const member = {
-      id: Date.now(),
+      // id: Date.now(),
+      id: uuid(),
       theme: themeRef.current.value || "",
       name: nameRef.current.value || "",
       message: messageRef.current.value || "",
@@ -185,8 +201,8 @@ const MemberCreate = ({ createMemberToggle, onAdd }) => {
         month: "long",
         day: "numeric",
       }),
-      fileName: null,
-      fileURL: null,
+      fileName: file.fileName || null,
+      fileURL: file.fileURL || null,
     };
     // if (
     //   member.name === "" ||
@@ -206,7 +222,8 @@ const MemberCreate = ({ createMemberToggle, onAdd }) => {
       <MemberItemWrap>
         <div className="member__info__basic">
           <div className="mib__img">
-            <img src="/images/default_face.jpg" alt="profile image" />
+            <img src={url} alt="profile" />
+            <FileInput name={file.fileName} onFileChange={onFileChange} />
           </div>
           <div className="mib__text">
             <h4>
