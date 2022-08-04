@@ -9,7 +9,10 @@ import ImageUploader from "./service/image_uploader";
 import ImageFileInput from "./components/imageFileInput/ImageFileInput";
 
 const authService = new AuthService();
-const imageUploader = new ImageUploader();
+const imageUploader = new ImageUploader(
+  process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
+  process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+);
 const FileInput = props => {
   return <ImageFileInput {...props} imageUploader={imageUploader} />;
 };
