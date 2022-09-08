@@ -238,15 +238,14 @@ const MemberEdit = ({ FileInput, member, editMemberToggle, onEdit }) => {
                 name="member__input__name"
               />
               <Select ref={themeRef} defaultValue={member.theme} name="member__select__theme">
-                <option value="none">=== 중요도 ===</option>
-                <option value="기본" selected>
-                  기본
+                <option value="latings0" selected>
+                  중요도 없음
                 </option>
-                <option value="★★★★★">★★★★★</option>
-                <option value="★★★★">★★★★</option>
-                <option value="★★★">★★★</option>
-                <option value="★★">★★</option>
-                <option value="★">★</option>
+                <option value="latings5">★★★★★</option>
+                <option value="latings4">★★★★</option>
+                <option value="latings3">★★★</option>
+                <option value="latings2">★★</option>
+                <option value="latings1">★</option>
               </Select>
             </h4>
             <h5>

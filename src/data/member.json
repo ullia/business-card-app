@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "theme": "★★★★★",
+    "theme": "latings5",
     "name": "고국천",
     "message": "안녕하세요! 저는 FED가 되고싶습니다.",
     "company": "SANTEL global",
@@ -9,27 +9,13 @@
     "rank": "과장",
     "phone": "010-6969-6969",
     "email": "ullia21@santelglobal.com",
-    "reportingDate": "2022. 07. 13.",
+    "reportingDate": "2018-03-23",
     "fileName": "KGC",
     "fileURL": "/images/KGC.jpg"
   },
   {
-    "id": "2",
-    "theme": "★★★★",
-    "name": "서영규",
-    "message": "안녕하세요! 저는 탈주자입니다!",
-    "company": "SANTEL global",
-    "division": "잡무팀",
-    "rank": "대리",
-    "phone": "010-4242-4242",
-    "email": "ygseo@santelglobal.com",
-    "reportingDate": "2022. 07. 13.",
-    "fileName": "SYG",
-    "fileURL": null
-  },
-  {
     "id": "3",
-    "theme": "★★★",
+    "theme": "latings3",
     "name": "UJIN",
     "message": "히히힣",
     "company": "oo초등학교",
@@ -37,13 +23,28 @@
     "rank": "초등교사",
     "phone": "010-5555-5555",
     "email": "ujin@edunet.com",
-    "reportingDate": "2022. 07. 13.",
+    "reportingDate": "1993-08-23",
     "fileName": "angel",
     "fileURL": "/images/angel.jpg"
   },
   {
+    "id": "2",
+    "theme": "latings4",
+    "name": "서영규",
+    "message": "안녕하세요! 저는 탈주자입니다!",
+    "company": "SANTEL global",
+    "division": "잡무팀",
+    "rank": "대리",
+    "phone": "010-4242-4242",
+    "email": "ygseo@santelglobal.com",
+    "reportingDate": "2020-05-17",
+    "fileName": "SYG",
+    "fileURL": null
+  },
+
+  {
     "id": "4",
-    "theme": "★★",
+    "theme": "latings2",
     "name": "윤두용",
     "message": "안녕하세요! 소개팅이 잘 안되어 힘듭니다.",
     "company": "SANTEL global",
@@ -51,13 +52,13 @@
     "rank": "주임",
     "phone": "010-5555-5555",
     "email": "dudragon@santelglobal.com",
-    "reportingDate": "2022. 07. 13.",
+    "reportingDate": "2021-10-02",
     "fileName": null,
     "fileURL": null
   },
   {
     "id": "5",
-    "theme": "★",
+    "theme": "latings1",
     "name": "이다혜",
     "message": "안녕하세요! KIA의 마스코트입니다.",
     "company": "KIA Tigers",
@@ -65,13 +66,13 @@
     "rank": "SSS",
     "phone": "010-7979-7979",
     "email": "kiadakong@santelglobal.com",
-    "reportingDate": "2022. 07. 13.",
+    "reportingDate": "2022-07-13",
     "fileName": null,
     "fileURL": null
   },
   {
     "id": "6",
-    "theme": "basic",
+    "theme": "latings0",
     "name": "바보보",
     "message": "에헤헿? 아핳?",
     "company": "SANTEL global",
@@ -79,7 +80,7 @@
     "rank": "none",
     "phone": "010-2233-22333",
     "email": "babo@santelglobal.com",
-    "reportingDate": "2022. 07. 13.",
+    "reportingDate": "2205-02-22",
     "fileName": null,
     "fileURL": null
   }

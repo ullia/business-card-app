@@ -66,7 +66,7 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const View = ({ FileInput, contTitle, members, search, onAdd, onEdit, onDelete }) => {
+const View = ({ FileInput, contTitle, members, search, onAdd, onEdit, onDelete, onSort }) => {
   const searchRef = useRef();
   const [createMemberStatus, setCreateMemberStatus] = useState(false);
   const [editMemberStatus, setEditMemberStatus] = useState(false);
@@ -124,6 +124,7 @@ const View = ({ FileInput, contTitle, members, search, onAdd, onEdit, onDelete }
               keyword={keyword}
               editMemberToggle={editMemberToggle}
               onDelete={onDelete}
+              onSort={onSort}
             />
           }
         />

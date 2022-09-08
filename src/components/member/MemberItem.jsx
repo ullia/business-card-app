@@ -64,22 +64,22 @@ const MemberItemWrap = styled.li`
     height: 56%;
     background: #ececec;
     padding: 16px 0 0 180px;
-    &.★★★★★ {
+    &.latings5 {
       background: #355070;
     }
-    &.★★★★ {
+    &.latings4 {
       background: #6d597a;
     }
-    &.★★★ {
+    &.latings3 {
       background: #b56576;
     }
-    &.★★ {
+    &.latings2 {
       background: #e56b6f;
     }
-    &.★ {
+    &.latings1 {
       background: #eaac8b;
     }
-    &.basic {
+    &.latings0 {
       background: #7d7d7d;
     }
     .mid__text {

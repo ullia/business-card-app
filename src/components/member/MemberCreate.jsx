@@ -96,22 +96,22 @@ const MemberItemWrap = styled.div`
     height: 56%;
     background: #ececec;
     padding: 16px 0 0 180px;
-    &.★★★★★ {
+    &.latings5 {
       background: #355070;
     }
-    &.★★★★ {
+    &.latings4 {
       background: #6d597a;
     }
-    &.★★★ {
+    &.latings3 {
       background: #b56576;
     }
-    &.★★ {
+    &.latings2 {
       background: #e56b6f;
     }
-    &.★ {
+    &.latings1 {
       background: #eaac8b;
     }
-    &.basic {
+    &.latings0 {
       background: #7d7d7d;
     }
     .mid__text {
@@ -184,7 +184,7 @@ const MemberCreate = ({ FileInput, createMemberToggle, onAdd }) => {
   const onSubmit = e => {
     e.preventDefault();
     console.log("submit success");
-    const today = new Date();
+    // const today = new Date();
     const member = {
       // id: Date.now(),
       id: uuid(),
@@ -196,11 +196,12 @@ const MemberCreate = ({ FileInput, createMemberToggle, onAdd }) => {
       rank: rankRef.current.value || "",
       phone: phoneRef.current.value || "",
       email: emailRef.current.value || "",
-      reportingDate: today.toLocaleDateString("ko-KR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
+      // reportingDate: today.toLocaleDateString("ko-KR", {
+      //   year: "numeric",
+      //   month: "long",
+      //   day: "numeric",
+      // }),
+      reportingDate: new Date(+new Date() + 3240 * 10000).toISOString().split("T")[0],
       fileName: file.fileName || null,
       fileURL: file.fileURL || null,
     };
@@ -229,15 +230,14 @@ const MemberCreate = ({ FileInput, createMemberToggle, onAdd }) => {
             <h4>
               <Input ref={nameRef} type="text" placeholder="이름" name="member__input__name" />
               <Select ref={themeRef} name="member__select__theme">
-                <option value="none">=== 중요도 ===</option>
-                <option value="기본" selected>
-                  기본
+                <option value="latings0" selected>
+                  중요도 없음
                 </option>
-                <option value="★★★★★">★★★★★</option>
-                <option value="★★★★">★★★★</option>
-                <option value="★★★">★★★</option>
-                <option value="★★">★★</option>
-                <option value="★">★</option>
+                <option value="latings5">★★★★★</option>
+                <option value="latings4">★★★★</option>
+                <option value="latings3">★★★</option>
+                <option value="latings2">★★</option>
+                <option value="latings1">★</option>
               </Select>
             </h4>
             <h5>

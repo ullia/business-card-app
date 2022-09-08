@@ -77,6 +77,11 @@ function App({ FileInput, authService }) {
     setMembers(members.filter(member => member.id !== id));
   };
 
+  const onSort = memberObj => {
+    const update = memberObj.map(member => member);
+    setMembers(update);
+  };
+
   useEffect(() => {
     const pathName = window.location.pathname.split("/")[1];
     setContTitle(pathName || "home");
@@ -95,6 +100,7 @@ function App({ FileInput, authService }) {
         onAdd={onAdd}
         onEdit={onEdit}
         onDelete={onDelete}
+        onSort={onSort}
         FileInput={FileInput}
       />
     </WiWM>
