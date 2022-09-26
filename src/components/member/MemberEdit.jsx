@@ -186,7 +186,7 @@ const MemberEdit = ({ FileInput, member, editMemberToggle, onEdit }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("submit success");
+    console.log("Edit submit success");
     const today = new Date();
     const newMember = {
       id: member.id,
@@ -203,8 +203,8 @@ const MemberEdit = ({ FileInput, member, editMemberToggle, onEdit }) => {
         month: "2-digit",
         day: "2-digit",
       }),
-      fileName: file.fileName || "",
-      fileURL: file.fileURL || "",
+      fileName: file.fileName || member.fileName,
+      fileURL: file.fileURL || member.fileURL,
     };
     // console.log(newMember);
     if (
